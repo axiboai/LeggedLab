@@ -159,6 +159,31 @@ class BaseEnvCfg:
                 interval_range_s=(10.0, 15.0),
                 params={"velocity_range": {"x": (-1.0, 1.0), "y": (-1.0, 1.0)}},
             ),
+            
+            # randomize_link_mass = EventTerm(
+            #     func=mdp.randomize_rigid_body_mass,
+            #     mode="startup",
+            #     params={
+            #         "asset_cfg": SceneEntityCfg("robot", body_names=[".*"]),
+            #         "mass_distribution_params": (0.9, 1.1),
+            #         "operation": "scale",
+            #     },
+            # ),
+
+            #disabled because it doesn't seem to work: https://github.com/isaac-sim/IsaacLab/issues/665
+            # randomize_joint_parameters = EventTerm(
+            #     func=mdp.randomize_joint_parameters,
+            #     mode="startup",
+            #     params={
+            #         "asset_cfg": SceneEntityCfg("robot", joint_names=".*"),
+            #         "friction_distribution_params": (0.8, 1.2),
+            #         "armature_distribution_params": (0.8, 1.2),
+            #         "lower_limit_distribution_params": (0.8, 1.2),
+            #         "upper_limit_distribution_params": (0.8, 1.2),
+            #         "operation": "scale",
+            #         "distribution": "log_uniform",
+            #     },
+            # )
         ),
         action_delay=ActionDelayCfg(enable=False, params={"max_delay": 5, "min_delay": 0}),
     )

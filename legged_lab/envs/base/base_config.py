@@ -162,6 +162,28 @@ class EventCfg:
         interval_range_s=(10.0, 15.0),
         params={"velocity_range": {"x": (-1.0, 1.0), "y": (-1.0, 1.0)}},
     )
+    # randomize_link_mass = EventTerm(
+    #     func=mdp.randomize_rigid_body_mass,
+    #     mode="startup",
+    #     params={
+    #         "asset_cfg": SceneEntityCfg("robot", body_names=[".*"]),
+    #         "mass_distribution_params": (0.8, 1.2),
+    #         "operation": "scale",
+    #     },
+    # )
+    # randomize_joint_parameters = EventTerm(
+    #     func=mdp.randomize_joint_parameters,
+    #     mode="reset",
+    #     params={
+    #         "asset_cfg": SceneEntityCfg("robot", joint_names=".*"),
+    #         "friction_distribution_params": (0.8, 1.2),
+    #         "armature_distribution_params": (0.8, 1.2),
+    #         "lower_limit_distribution_params": (0.8, 1.2),
+    #         "upper_limit_distribution_params": (0.8, 1.2),
+    #         "operation": "scale",
+    #         "distribution": "log_uniform",
+    #     },
+    # )
 
 
 @configclass

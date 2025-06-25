@@ -22,6 +22,25 @@ inherit from ``isaaclab.terrains.terrains_cfg.TerrainConfig`` and define the fol
 import isaaclab.terrains as terrain_gen
 from isaaclab.terrains.terrain_generator_cfg import TerrainGeneratorCfg
 
+FLAT_TERRAINS_CFG = TerrainGeneratorCfg(
+    curriculum=False,
+    size=(8.0, 8.0),
+    border_width=0.0,
+    num_rows=1,
+    num_cols=1,
+    horizontal_scale=0.1,
+    vertical_scale=0.0,
+    slope_threshold=None,
+    use_cache=False,
+    sub_terrains={
+        "flat_mesh": terrain_gen.MeshPlaneTerrainCfg(
+            proportion=1.0,
+            size=(8.0, 8.0),
+            flat_patch_sampling=None,
+        )
+    },
+)
+
 GRAVEL_TERRAINS_CFG = TerrainGeneratorCfg(
     curriculum=False,
     size=(8.0, 8.0),
