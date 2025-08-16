@@ -171,19 +171,31 @@ class EventCfg:
     #         "operation": "scale",
     #     },
     # )
-    # randomize_joint_parameters = EventTerm(
-    #     func=mdp.randomize_joint_parameters,
-    #     mode="reset",
-    #     params={
-    #         "asset_cfg": SceneEntityCfg("robot", joint_names=".*"),
-    #         "friction_distribution_params": (0.8, 1.2),
-    #         "armature_distribution_params": (0.8, 1.2),
-    #         "lower_limit_distribution_params": (0.8, 1.2),
-    #         "upper_limit_distribution_params": (0.8, 1.2),
-    #         "operation": "scale",
-    #         "distribution": "log_uniform",
-    #     },
-    # )
+    randomize_joint_parameters = EventTerm(
+        func=mdp.randomize_joint_parameters,
+        mode="reset",
+        params={
+            "asset_cfg": SceneEntityCfg("robot", joint_names=".*"),
+            "friction_distribution_params": (0.5, 2.0),
+            "armature_distribution_params": (0.5, 2.0),
+            "lower_limit_distribution_params": (0.8, 1.2),
+            "upper_limit_distribution_params": (0.8, 1.2),
+            "operation": "scale",
+            "distribution": "log_uniform",
+        },
+    )
+    robot_joint_stiffness_and_damping = EventTerm(
+        func=mdp.randomize_actuator_gains,
+        min_step_count_between_reset=720,
+        mode="reset",
+        params={
+            "asset_cfg": SceneEntityCfg("robot", joint_names=".*"),
+            "stiffness_distribution_params": (0.75, 1.5),
+            "damping_distribution_params": (0.3, 3.0),
+            "operation": "scale",
+            "distribution": "log_uniform",
+        },
+    )
 
 
 @configclass
