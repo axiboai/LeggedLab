@@ -40,6 +40,7 @@ from .base_config import (
     PhysxCfg,
     RewardCfg,
     RobotCfg,
+    SensorFailureCfg,
     SimCfg,
 )
 
@@ -107,6 +108,11 @@ class BaseEnvCfg:
             joint_vel=1.5,
             height_scan=0.1,
         ),
+    )
+    sensor_failure: SensorFailureCfg = SensorFailureCfg(
+        projected_gravity_failure=False,
+        joint_velocity_failure=False,
+        angular_velocity_failure=False,
     )
     domain_rand: DomainRandCfg = DomainRandCfg(
         events=EventCfg(

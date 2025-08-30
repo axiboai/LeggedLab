@@ -130,11 +130,31 @@ class BaseEnv(VecEnv):
         robot = self.robot
         net_contact_forces = self.contact_sensor.data.net_forces_w_history
 
-        ang_vel = robot.data.root_ang_vel_b
-        projected_gravity = robot.data.projected_gravity_b
+        # Handle angular velocity sensor failure
+        if self.cfg.sensor_failure.angular_velocity_failure:
+            # Simulate sensor failure by providing zero angular velocities
+            ang_vel = torch.zeros_like(robot.data.root_ang_vel_b)
+        else:
+            ang_vel = robot.data.root_ang_vel_b
+        
+        # Handle projected gravity sensor failure
+        if self.cfg.sensor_failure.projected_gravity_failure:
+            # Simulate upright orientation by providing expected gravity vector
+            projected_gravity = torch.zeros_like(robot.data.projected_gravity_b)
+            projected_gravity[:, 2] = -1.0  # Set z-component to -1 (upright orientation)
+        else:
+            projected_gravity = robot.data.projected_gravity_b
+            
         command = self.command_generator.command
         joint_pos = robot.data.joint_pos - robot.data.default_joint_pos
-        joint_vel = robot.data.joint_vel - robot.data.default_joint_vel
+        
+        # Handle joint velocity sensor failure
+        if self.cfg.sensor_failure.joint_velocity_failure:
+            # Simulate sensor failure by providing zero velocities
+            joint_vel = torch.zeros_like(robot.data.joint_vel - robot.data.default_joint_vel)
+        else:
+            joint_vel = robot.data.joint_vel - robot.data.default_joint_vel
+            
         action = self.action_buffer._circular_buffer.buffer[:, -1, :]
         current_actor_obs = torch.cat(
             [
@@ -269,13 +289,29 @@ class BaseEnv(VecEnv):
             actor_obs, _ = self.compute_current_observations()
             noise_vec = torch.zeros_like(actor_obs[0])
             noise_scales = self.cfg.noise.noise_scales
-            noise_vec[:3] = noise_scales.ang_vel * self.obs_scales.ang_vel
-            noise_vec[3:6] = noise_scales.projected_gravity * self.obs_scales.projected_gravity
+            # Don't add noise to failed angular velocity sensor
+            if self.cfg.sensor_failure.angular_velocity_failure:
+                noise_vec[:3] = 0.0  # No noise for failed angular velocity sensor
+            else:
+                noise_vec[:3] = noise_scales.ang_vel * self.obs_scales.ang_vel
+            
+            # Don't add noise to failed sensors
+            if self.cfg.sensor_failure.projected_gravity_failure:
+                noise_vec[3:6] = 0.0  # No noise for failed projected gravity sensor
+            else:
+                noise_vec[3:6] = noise_scales.projected_gravity * self.obs_scales.projected_gravity
+                
             noise_vec[6:9] = 0
             noise_vec[9 : 9 + self.num_actions] = noise_scales.joint_pos * self.obs_scales.joint_pos
-            noise_vec[9 + self.num_actions : 9 + self.num_actions * 2] = (
-                noise_scales.joint_vel * self.obs_scales.joint_vel
-            )
+            
+            # Don't add noise to failed joint velocity sensor
+            if self.cfg.sensor_failure.joint_velocity_failure:
+                noise_vec[9 + self.num_actions : 9 + self.num_actions * 2] = 0.0  # No noise for failed joint velocity sensor
+            else:
+                noise_vec[9 + self.num_actions : 9 + self.num_actions * 2] = (
+                    noise_scales.joint_vel * self.obs_scales.joint_vel
+                )
+                
             noise_vec[9 + self.num_actions * 2 : 9 + self.num_actions * 3] = 0.0
             self.noise_scale_vec = noise_vec
 

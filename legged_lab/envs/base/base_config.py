@@ -112,6 +112,14 @@ class NoiseCfg:
 
 
 @configclass
+class SensorFailureCfg:
+    """Configuration for simulating sensor failures while maintaining observation dimensions."""
+    projected_gravity_failure: bool = False  # If True, projected gravity will be set to upright (0, 0, -1)
+    joint_velocity_failure: bool = False     # If True, joint velocities will be set to zero
+    angular_velocity_failure: bool = False   # If True, angular velocities will be set to zero
+
+
+@configclass
 class EventCfg:
     physics_material = EventTerm(
         func=mdp.randomize_rigid_body_material,
