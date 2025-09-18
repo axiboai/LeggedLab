@@ -98,7 +98,7 @@ class CommandsCfg:
 
 @configclass
 class NoiseScalesCfg:
-    ang_vel: float = 0.2
+    ang_vel: float = 0.4
     projected_gravity: float = 0.05
     joint_pos: float = 0.01
     joint_vel: float = 1.5
@@ -137,7 +137,7 @@ class EventCfg:
         mode="startup",
         params={
             "asset_cfg": SceneEntityCfg("robot", body_names=MISSING),
-            "mass_distribution_params": (-5.0, 5.0),
+            "mass_distribution_params": (-10.0, 10.0),
             "operation": "add",
         },
     )
@@ -204,6 +204,16 @@ class EventCfg:
             "distribution": "log_uniform",
         },
     )
+
+    randomize_torso_com = EventTerm(
+        func=mdp.randomize_rigid_body_com,
+        mode="startup",
+        params={
+            "asset_cfg": SceneEntityCfg("robot", body_names="pelvis"),
+            "com_range": {"x": (-0.075 , 0.075), "y": (-0.075, 0.075), "z": (-0.075, 0.075)},
+        },
+    )
+
 
 
 @configclass

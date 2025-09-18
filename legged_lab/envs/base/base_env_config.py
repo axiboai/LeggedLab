@@ -132,7 +132,7 @@ class BaseEnvCfg:
                 mode="startup",
                 params={
                     "asset_cfg": SceneEntityCfg("robot", body_names=MISSING),
-                    "mass_distribution_params": (-5.0, 5.0),
+                    "mass_distribution_params": (-10.0, 10.0),
                     "operation": "add",
                 },
             ),
@@ -198,6 +198,14 @@ class BaseEnvCfg:
                     "damping_distribution_params": (0.3, 3.0),
                     "operation": "scale",
                     "distribution": "log_uniform",
+                },
+            ),
+            randomize_torso_com = EventTerm(
+                func=mdp.randomize_rigid_body_com,
+                mode="startup",
+                params={
+                    "asset_cfg": SceneEntityCfg("robot", body_names="pelvis"),
+                    "com_range": {"x": (-0.075 , 0.075), "y": (-0.075, 0.075), "z": (-0.075, 0.075)},
                 },
             )
         ),
