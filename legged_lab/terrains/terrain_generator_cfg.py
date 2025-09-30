@@ -20,7 +20,10 @@ inherit from ``isaaclab.terrains.terrains_cfg.TerrainConfig`` and define the fol
 """
 
 import isaaclab.terrains as terrain_gen
-from isaaclab.terrains.terrain_generator_cfg import TerrainGeneratorCfg
+from isaaclab.terrains.terrain_generator_cfg import TerrainGeneratorCfg, SubTerrainBaseCfg
+from isaaclab.utils import configclass
+import numpy as np
+import trimesh
 
 FLAT_TERRAINS_CFG = TerrainGeneratorCfg(
     curriculum=False,
@@ -117,5 +120,87 @@ ROUGH_TERRAINS_CFG = TerrainGeneratorCfg(
         # "gap": terrain_gen.MeshGapTerrainCfg(
         #     proportion=0.15, gap_width_range=(0.1, 0.4), platform_width=2.0
         # )
+    },
+)
+
+ROUGH_STAIRS_TERRAINS_CFG = TerrainGeneratorCfg(
+    curriculum=True,
+    size=(8.0, 8.0),
+    border_width=20.0,
+    num_rows=10,
+    num_cols=20,
+    horizontal_scale=0.1,
+    vertical_scale=0.005,
+    slope_threshold=0.75,
+    use_cache=False,
+    sub_terrains={
+        "pyramid_stairs_28": terrain_gen.MeshInvertedPyramidStairsTerrainCfg(
+            proportion=0.15,
+            step_height_range=(0.1, 0.23),
+            step_width=0.28,
+            platform_width=3.0,
+            border_width=1.0,
+            holes=False,
+        ),
+        "pyramid_stairs_30": terrain_gen.MeshInvertedPyramidStairsTerrainCfg(
+            proportion=0.15,
+            step_height_range=(0.1, 0.23),
+            step_width=0.30,
+            platform_width=3.0,
+            border_width=1.0,
+            holes=False,
+        ),
+        "pyramid_stairs_32": terrain_gen.MeshInvertedPyramidStairsTerrainCfg(
+            proportion=0.15,
+            step_height_range=(0.1, 0.23),
+            step_width=0.32,
+            platform_width=3.0,
+            border_width=1.0,
+            holes=False,
+        ),
+        "pyramid_stairs_34": terrain_gen.MeshInvertedPyramidStairsTerrainCfg(
+            proportion=0.15,
+            step_height_range=(0.1, 0.23),
+            step_width=0.34,
+            platform_width=3.0,
+            border_width=1.0,
+            holes=False,
+        ),
+        "boxes": terrain_gen.MeshRandomGridTerrainCfg(
+            proportion=0.1, grid_width=0.45, grid_height_range=(0.0, 0.15), platform_width=2.0
+        ),
+        "random_rough": terrain_gen.HfRandomUniformTerrainCfg(
+            proportion=0.1, noise_range=(-0.02, 0.04), noise_step=0.02, border_width=0.25
+        ),
+        "wave": terrain_gen.HfWaveTerrainCfg(proportion=0.1, amplitude_range=(0.0, 0.2), num_waves=5.0),
+        "high_platform": terrain_gen.MeshPitTerrainCfg(
+            proportion=0.1, pit_depth_range=(0.0, 0.3), platform_width=2.0, double_pit=True
+        ),
+    },
+)
+
+STAIRS_TERRAIN_CFG = TerrainGeneratorCfg(
+    size=(8.0, 8.0),
+    border_width=2.0,
+    num_rows=5,     
+    num_cols=8,     
+    horizontal_scale=0.1,
+    vertical_scale=0.005,
+    slope_threshold=0.75,
+    use_cache=False,
+    curriculum=False,
+    sub_terrains={
+        "flat_corridors": terrain_gen.MeshPlaneTerrainCfg(
+            proportion=0.1,  # 10% flat approach areas
+            size=(1.5, 1.5),
+        ),
+        "regular_mesh_stairs": terrain_gen.MeshPyramidStairsTerrainCfg(
+            proportion=0.90,
+            step_height_range=(0.11, 0.12),  # Fixed 11-12cm step height. Real steps are 10cm
+            step_width=0.30,
+            platform_width=1.8,
+            border_width=0.6,
+            holes=False,
+        ),
     },
 )
