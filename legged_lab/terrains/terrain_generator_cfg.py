@@ -136,7 +136,7 @@ ROUGH_STAIRS_TERRAINS_CFG = TerrainGeneratorCfg(
     sub_terrains={
         "pyramid_stairs_28": terrain_gen.MeshInvertedPyramidStairsTerrainCfg(
             proportion=0.15,
-            step_height_range=(0.1, 0.23),
+            step_height_range=(0.0, 0.23),
             step_width=0.28,
             platform_width=3.0,
             border_width=1.0,
@@ -144,7 +144,7 @@ ROUGH_STAIRS_TERRAINS_CFG = TerrainGeneratorCfg(
         ),
         "pyramid_stairs_30": terrain_gen.MeshInvertedPyramidStairsTerrainCfg(
             proportion=0.15,
-            step_height_range=(0.1, 0.23),
+            step_height_range=(0.0, 0.23),
             step_width=0.30,
             platform_width=3.0,
             border_width=1.0,
@@ -152,7 +152,7 @@ ROUGH_STAIRS_TERRAINS_CFG = TerrainGeneratorCfg(
         ),
         "pyramid_stairs_32": terrain_gen.MeshInvertedPyramidStairsTerrainCfg(
             proportion=0.15,
-            step_height_range=(0.1, 0.23),
+            step_height_range=(0.0, 0.23),
             step_width=0.32,
             platform_width=3.0,
             border_width=1.0,
@@ -160,7 +160,7 @@ ROUGH_STAIRS_TERRAINS_CFG = TerrainGeneratorCfg(
         ),
         "pyramid_stairs_34": terrain_gen.MeshInvertedPyramidStairsTerrainCfg(
             proportion=0.15,
-            step_height_range=(0.1, 0.23),
+            step_height_range=(0.0, 0.23),
             step_width=0.34,
             platform_width=3.0,
             border_width=1.0,
