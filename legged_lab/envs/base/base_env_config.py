@@ -205,7 +205,7 @@ class BaseEnvCfg:
                 mode="startup",
                 params={
                     "asset_cfg": SceneEntityCfg("robot", body_names="pelvis"),
-                    "com_range": {"x": (-0.025 , 0.025), "y": (-0.025, 0.025), "z": (-0.025, 0.025)},
+                    "com_range": {"x": (-0.01 , 0.01), "y": (-0.01, 0.01), "z": (-0.01, 0.01)},
                 },
             )
         ),
