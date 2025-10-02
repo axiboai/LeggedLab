@@ -98,7 +98,7 @@ class CommandsCfg:
 
 @configclass
 class NoiseScalesCfg:
-    ang_vel: float = 0.4
+    ang_vel: float = 0.2
     projected_gravity: float = 0.05
     joint_pos: float = 0.01
     joint_vel: float = 1.5
@@ -205,14 +205,14 @@ class EventCfg:
         },
     )
 
-    randomize_torso_com = EventTerm(
-        func=mdp.randomize_rigid_body_com,
-        mode="startup",
-        params={
-            "asset_cfg": SceneEntityCfg("robot", body_names="pelvis"),
-            "com_range": {"x": (-0.01 , 0.01), "y": (-0.01, 0.01), "z": (-0.01, 0.01)},
-        },
-    )
+    # randomize_torso_com = EventTerm(
+    #     func=mdp.randomize_rigid_body_com,
+    #     mode="startup",
+    #     params={
+    #         "asset_cfg": SceneEntityCfg("robot", body_names="pelvis"),
+    #         "com_range": {"x": (-0.01 , 0.01), "y": (-0.01, 0.01), "z": (-0.01, 0.01)},
+    #     },
+    # )
 
 
 

@@ -290,21 +290,21 @@ ROUGH_STAIRS_TERRAINS_CFG = TerrainGeneratorCfg(
     slope_threshold=0.75,
     use_cache=False,
     sub_terrains={
-        "pyramid_stairs_28": MeshInvertedPyramidStairsWithLipTerrainCfg(
-            proportion=0.15,
-            step_height_range=(0.08, 0.23),
+        "pyramid_stairs_26": MeshInvertedPyramidStairsWithLipTerrainCfg(
+            proportion=0.1,
+            step_height_range=(0.0, 0.23),
             step_width=0.26,
             platform_width=3.0,
             border_width=1.0,
             holes=False,
             lip_height=0.02,     # 2 cm tall
-            lip_depth=0.03,      # 6 cm total depth
-            lip_inset=-0.02,     # 4 cm OUTSIDE edge (overhang), 2 cm inside
+            lip_depth=0.03,      # 3 cm total depth
+            lip_inset=-0.02,     # 1 cm OUTSIDE edge (overhang), 1 cm inside
             add_bottom_lip=True, # lips on top AND bottom edges
         ),
-        "pyramid_stairs_30": MeshInvertedPyramidStairsWithLipTerrainCfg(
-            proportion=0.15,
-            step_height_range=(0.08, 0.23),
+        "pyramid_stairs_28": MeshInvertedPyramidStairsWithLipTerrainCfg(
+            proportion=0.1,
+            step_height_range=(0.0, 0.23),
             step_width=0.28,
             platform_width=3.0,
             border_width=1.0,
@@ -314,9 +314,9 @@ ROUGH_STAIRS_TERRAINS_CFG = TerrainGeneratorCfg(
             lip_inset=-0.03,
             add_bottom_lip=True,
         ),
-        "pyramid_stairs_32": MeshInvertedPyramidStairsWithLipTerrainCfg(
-            proportion=0.15,
-            step_height_range=(0.08, 0.23),
+        "pyramid_stairs_30_1": MeshInvertedPyramidStairsWithLipTerrainCfg(
+            proportion=0.1,
+            step_height_range=(0.0, 0.23),
             step_width=0.30,
             platform_width=3.0,
             border_width=1.0,
@@ -326,9 +326,9 @@ ROUGH_STAIRS_TERRAINS_CFG = TerrainGeneratorCfg(
             lip_inset=-0.03,
             add_bottom_lip=True,
         ),
-        "pyramid_stairs_34": MeshInvertedPyramidStairsWithLipTerrainCfg(
-            proportion=0.15,
-            step_height_range=(0.08, 0.23),
+        "pyramid_stairs_30_2": MeshInvertedPyramidStairsWithLipTerrainCfg(
+            proportion=0.1,
+            step_height_range=(0.0, 0.23),
             step_width=0.30,
             platform_width=3.0,
             border_width=1.0,
@@ -349,12 +349,12 @@ ROUGH_STAIRS_TERRAINS_CFG = TerrainGeneratorCfg(
         "high_platform": terrain_gen.MeshPitTerrainCfg(
             proportion=0.1, pit_depth_range=(0.0, 0.3), platform_width=2.0, double_pit=True
         ),
-        # "star": terrain_gen.MeshStarTerrainCfg(
-        #     proportion=0.15, num_bars=6, bar_width_range=(0.05, 0.05), bar_height_range=(0.0, 0.25), platform_width=1.0
-        # ),
-        # "gap": terrain_gen.MeshGapTerrainCfg(
-        #     proportion=0.15, gap_width_range=(0.1, 0.4), platform_width=2.0
-        # )
+        "star": terrain_gen.MeshStarTerrainCfg(
+            proportion=0.1, num_bars=6, bar_width_range=(0.05, 0.05), bar_height_range=(0.0, 0.25), platform_width=1.0
+        ),
+        "gap": terrain_gen.MeshGapTerrainCfg(
+            proportion=0.1, gap_width_range=(0.1, 0.4), platform_width=2.0
+        )
     },
 )
 
