@@ -200,14 +200,14 @@ class BaseEnvCfg:
                     "distribution": "log_uniform",
                 },
             ),
-            # randomize_torso_com = EventTerm(
-            #     func=mdp.randomize_rigid_body_com,
-            #     mode="startup",
-            #     params={
-            #         "asset_cfg": SceneEntityCfg("robot", body_names="pelvis"),
-            #         "com_range": {"x": (-0.01 , 0.01), "y": (-0.01, 0.01), "z": (-0.01, 0.01)},
-            #     },
-            # )
+            randomize_torso_com = EventTerm(
+                func=mdp.randomize_rigid_body_com,
+                mode="startup",
+                params={
+                    "asset_cfg": SceneEntityCfg("robot", body_names=".*torso.*"),
+                    "com_range": {"x": (-0.025 , 0.025), "y": (-0.025, 0.025), "z": (-0.025, 0.025)},
+                },
+            )
         ),
         action_delay=ActionDelayCfg(enable=False, params={"max_delay": 5, "min_delay": 0}),
     )
