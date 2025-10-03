@@ -291,8 +291,8 @@ ROUGH_STAIRS_TERRAINS_CFG = TerrainGeneratorCfg(
     use_cache=False,
     sub_terrains={
         "pyramid_stairs_26": MeshInvertedPyramidStairsWithLipTerrainCfg(
-            proportion=0.125,
-            step_height_range=(0.05, 0.23),
+            proportion=0.1,
+            step_height_range=(0.0, 0.23),
             step_width=0.26,
             platform_width=3.0,
             border_width=1.0,
@@ -303,8 +303,8 @@ ROUGH_STAIRS_TERRAINS_CFG = TerrainGeneratorCfg(
             add_bottom_lip=True, # lips on top AND bottom edges
         ),
         "pyramid_stairs_28": MeshInvertedPyramidStairsWithLipTerrainCfg(
-            proportion=0.125,
-            step_height_range=(0.05, 0.23),
+            proportion=0.1,
+            step_height_range=(0.0, 0.23),
             step_width=0.28,
             platform_width=3.0,
             border_width=1.0,
@@ -315,8 +315,8 @@ ROUGH_STAIRS_TERRAINS_CFG = TerrainGeneratorCfg(
             add_bottom_lip=True,
         ),
         "pyramid_stairs_30_1": MeshInvertedPyramidStairsWithLipTerrainCfg(
-            proportion=0.125,
-            step_height_range=(0.05, 0.23),
+            proportion=0.1,
+            step_height_range=(0.0, 0.23),
             step_width=0.30,
             platform_width=3.0,
             border_width=1.0,
@@ -327,8 +327,8 @@ ROUGH_STAIRS_TERRAINS_CFG = TerrainGeneratorCfg(
             add_bottom_lip=True,
         ),
         "pyramid_stairs_30_2": MeshInvertedPyramidStairsWithLipTerrainCfg(
-            proportion=0.125,
-            step_height_range=(0.05, 0.23),
+            proportion=0.1,
+            step_height_range=(0.0, 0.23),
             step_width=0.30,
             platform_width=3.0,
             border_width=1.0,
@@ -340,14 +340,14 @@ ROUGH_STAIRS_TERRAINS_CFG = TerrainGeneratorCfg(
         ),
 
         "boxes": terrain_gen.MeshRandomGridTerrainCfg(
-            proportion=0.05, grid_width=0.45, grid_height_range=(0.0, 0.15), platform_width=2.0
+            proportion=0.15, grid_width=0.45, grid_height_range=(0.0, 0.15), platform_width=2.0
         ),
         "random_rough": terrain_gen.HfRandomUniformTerrainCfg(
-            proportion=0.35, noise_range=(-0.02, 0.04), noise_step=0.02, border_width=0.25
+            proportion=0.15, noise_range=(-0.02, 0.04), noise_step=0.02, border_width=0.25
         ),
-        "wave": terrain_gen.HfWaveTerrainCfg(proportion=0.05, amplitude_range=(0.0, 0.2), num_waves=5.0),
+        "wave": terrain_gen.HfWaveTerrainCfg(proportion=0.15, amplitude_range=(0.0, 0.2), num_waves=5.0),
         "high_platform": terrain_gen.MeshPitTerrainCfg(
-            proportion=0.05, pit_depth_range=(0.0, 0.3), platform_width=2.0, double_pit=True
+            proportion=0.15, pit_depth_range=(0.0, 0.3), platform_width=2.0, double_pit=True
         ),
         # "star": terrain_gen.MeshStarTerrainCfg(
         #     proportion=0.1, num_bars=6, bar_width_range=(0.05, 0.05), bar_height_range=(0.0, 0.25), platform_width=1.0
