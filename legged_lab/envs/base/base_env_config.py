@@ -60,8 +60,8 @@ class BaseEnvCfg:
             enable_height_scan=False,
             prim_body_name=MISSING,
             resolution=0.1,
-            size=(1.6, 1.0),
-            debug_vis=False,
+            size=(0.8, 0.8),
+            debug_vis=True,
             drift_range=(0.0, 0.0),  # (0.3, 0.3)
         ),
     )
